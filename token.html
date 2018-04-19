@@ -1,0 +1,143 @@
+<html>
+<head>
+    <title>Token counter</title>
+</head>
+<body>
+    <script lang="text/script">
+    function clear_fields() {
+        document.getElementById("member_usd").value="";
+        document.getElementById("model_usd").value="";
+        document.getElementById("nood_tokens").value="";
+        document.getElementById("mfc_tokens").value="";
+
+    }
+    function do_calculation() {
+        var member_usd = document.getElementById("member_usd").value;
+        var model_usd = document.getElementById("model_usd").value;
+        var nood_tokens = document.getElementById("nood_tokens").value;
+        var mfc_tokens = document.getElementById("mfc_tokens").value;
+
+        if (member_usd !== '') {
+            calculate_from_member_usd();
+        } else if (model_usd !== '') {
+            calculate_from_model_usd();
+        } else if (nood_tokens !== '') {
+            calculate_from_nood();
+        } else if (mfc_tokens !== '') {
+            calculate_from_mfc();
+        } else {
+            alert("Fill out a box damnit ;)");
+        }
+        console.log(member_usd + " " + model_usd +" " + nood_tokens + " " + mfc_tokens);
+    }
+
+    function calculate_from_member_usd() {
+        var member_usd = document.getElementById("member_usd").value;
+        var mfc_tokens = get_mfc_tokens_from_usd(member_usd);
+        var nood_tokens = get_nood_tokens_from_usd(member_usd);
+        document.getElementById("model_usd").value='x';
+        document.getElementById("nood_tokens").value=nood_tokens;
+        document.getElementById("mfc_tokens").value=mfc_tokens;
+    }
+
+    function get_mfc_tokens_from_usd(member_usd) {
+        var cost_per_token;
+        if (member_usd < 20) {
+            cost_per_token = 0.1;
+        } else if (member_usd < 50) {
+            cost_per_token = 0.09;
+        } else if (member_usd < 75) {
+            cost_per_token = (74.99/900);
+        } else if (member_usd < 150) {
+            cost_per_token = (149.99/1875);
+        } else if (member_usd < 300) {
+            cost_per_token = (299.99/3775);
+        } else {
+            cost_per_token = (599.99/7575);
+        }
+        return member_usd * (1/cost_per_token);
+    }
+
+    function get_nood_tokens_from_usd(member_usd) {
+        if (member_usd < 10) {
+            return member_usd*(1/(10/99));
+        } else {
+            return member_usd*(1/0.1);
+        }
+    }
+
+    function calculate_from_model_usd() {
+        var model_usd = document.getElementById("model_usd").value;
+        var mfc_tokens = get_mfc_tokens_from_model(model_usd);
+        var nood_tokens = get_nood_tokens_from_model(model_usd);
+
+        document.getElementById("member_usd").value='x';
+        document.getElementById("nood_tokens").value=nood_tokens;
+        document.getElementById("mfc_tokens").value=mfc_tokens;
+    }
+
+    function get_mfc_tokens_from_model(model_usd) {
+        return model_usd * 1/0.05;
+    }
+
+    function get_nood_tokens_from_model(model_usd) {
+        return model_usd * 1/0.07;
+    }
+
+    function calculate_from_mfc_tokens() {
+        var mfc_tokens = document.getElementById("mfc_tokens").value;
+        if (mfc_tokens <= 200) {
+            cost_per_token = 0.1;
+        } else if (mfc_tokens <= 550) {
+            cost_per_token = 0.09;
+        } else if (mfc_tokens <= 900) {
+            cost_per_token = (74.99/900);
+        } else if (mfc_tokens <= 1875) {
+            cost_per_token = (149.99/1875);
+        } else if (mfc_tokens <= 3775) {
+            cost_per_token = (299.99/3775);
+        } else {
+            cost_per_token = (599.99/7575);
+        }
+
+        var member_usd = cost_per_token*mfc_tokens;
+        var model_usd = mfc_tokens*0.05;
+
+        document.getElementById("member_usd").value=member_usd;
+        document.getElementById("model_usd").value=model_usd;
+        document.getElementById("nood_tokens").value="x";
+    }
+
+    function calculate_from_nood_tokens() {
+        var nood_tokens = document.getElementById("nood_tokens").value;
+        if (nood_tokens <= 99) {
+            cost_per_token = 1/(10/99);
+        } else {
+            cost_per_token = 0.1;
+        }
+        member_usd = cost_per_token*nood_tokens;
+        model_usd = nood_tokens*0.07;
+        document.getElementById("member_usd").value=member_usd;
+        document.getElementById("model_usd").value=model_usd;
+        document.getElementById("mfc_tokens").value="x";
+    }
+
+    </script>
+    <h2>Confused? Unconfuse!</h2>
+    <h3>All calculations are made with the token package closest above the amount, so small amounts get fewer tokens</h3>
+    <table>
+        <tr><th>Member USD</th><th>Model USD</th><th>Nood Tokens</th><th> MFCTokens</th>
+        <tr><td><input type="text" id="member_usd"/></td>
+            <td><input type="text" id="model_usd"/></td>
+            <td><input type="text" id="nood_tokens"/></td>
+            <td><input type="text" id="mfc_tokens"/></td>
+        </tr>
+        <tr>
+            <td><input type="button" name="calculate" onclick="calculate_from_member_usd();" value="Calculate!"/></td>
+            <td><input type="button" name="calculate" onclick="calculate_from_model_usd();" value="Calculate!"/></td>
+            <td><input type="button" name="calculate" onclick="calculate_from_nood_tokens();" value="Calculate!"/></td>
+            <td><input type="button" name="calculate" onclick="calculate_from_mfc_tokens();" value="Calculate!"/></td>
+        </tr>
+    </table>
+    <input type="button" name="clear" onclick="clear_fields();" value="Clear all fields"/>
+</body>
