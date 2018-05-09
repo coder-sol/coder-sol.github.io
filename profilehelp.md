@@ -36,7 +36,7 @@ If you want to learn more about HTML I suggest you go through the w3schools tuto
 
 ## Changing the tip menus
 Start by opening Notepad++, pasting the thing you have in the About me box and saving it somewhere as whateveryouwant.html so you get something that looks like this: 
-![](images/1.png)
+![](1.png)
 
 Now we need to locate the tip menus, scroll down into the file until you find:
 ```HTML
@@ -137,5 +137,7 @@ Note that the href part is surrounded by quote signs (")
 ```
 ![](6.png)
 
+
+Now when you've fixed all the things you want to fix, you copy everything you have in your notepad++ window and paste it into the about me-box on the profile page.
 
 
