@@ -48,11 +48,11 @@ Now we need to locate the tip menus, scroll down into the file until you find:
 Now, say we want to change the "Pick a song" option, we find it:
 ```HTML
 <tr><td>Pick a Song
-                  <br>*include link please*</td>
-                  <td class="spanreplace">
-                    <a class="buy" href="https://www.myfreecams.com/php/tip.php?broadcaster_id=24962734&request=tip&tip_value=28&comment=Pick+a+song+My+request+is++%28tip+from+profile%29" target="_blank">28 Tokens</a>
-                  </td>
-                </tr>
+      <br>*include link please*</td>
+      <td class="spanreplace">
+            <a class="buy" href="https://www.myfreecams.com/php/tip.php?broadcaster_id=24962734&request=tip&tip_value=28&comment=Pick+a+song+My+request+is++%28tip+from+profile%29" target="_blank">28 Tokens</a>
+     </td>
+</tr>
 ```
 and then we pause a bit to explain what's going on here.
 First of all. All tags that starts with a slash (/) are end tags, meaning they end a previous tag. All tags should be ended or shit will go bad :D
@@ -121,13 +121,21 @@ So we get something like this:
  so we get this complete link:
  ```HTML
 <tr><td>Stand on one foot</td>
-                  <td class="spanreplace">
-                    <a class="buy" href="https://www.myfreecams.com/php/tip.php?broadcaster_id=24962734&request=tip&tip_value=31&comment=Stand%20on%20one%20foot" target="_blank">31 Tokens</a>
+      <td class="spanreplace">
+      <a class="buy" href="https://www.myfreecams.com/php/tip.php?broadcaster_id=24962734&request=tip&tip_value=31&comment=Stand%20on%20one%20foot" target="_blank">31 Tokens</a>
+      </td>
 ```
 
 Note that the href part is surrounded by quote signs (")
 
 
- 
+ To remove a tip option completely you delete everything between (including) the tr-tags for that option 
+```
+ <tr>
+ ......
+ </tr>
+```
+![](6.png)
+
 
 
