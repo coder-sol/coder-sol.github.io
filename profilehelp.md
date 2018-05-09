@@ -16,7 +16,7 @@ If you want to put an image on the site just use the img-tag. Easy as that ;)
 ```
 If we click the _What the page says_ link we will be taken to https://example.com/mylink.html 
 
-** Sections **
+**Sections**
 There are a few ways to define a section of the page:
 
 ```
